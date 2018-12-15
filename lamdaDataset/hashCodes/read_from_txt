@@ -1,0 +1,3 @@
+
+dmlh_512 = importdata('binaryCodes_lamda_64bits.txt');
+save dmlh_512.mat
