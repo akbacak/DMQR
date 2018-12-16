@@ -1,7 +1,8 @@
 
 
-load('/home/ubuntu/Desktop/Thesis_Follow_Up_2/ParetoTEST/lamdaDataset/preprocessed_features/pyramid_all.mat');
-data = pyramid_all;
+load('lamdaDataset/hashCodes/hashCodes_512.mat');
+data = hashCodes_512;
+
 
 tic
 
