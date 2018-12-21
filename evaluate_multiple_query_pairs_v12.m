@@ -3,7 +3,7 @@
 % Marmara University, Istanbul
 % akbacakk@gmail.com
 % THIS FILE COMPUTES MQUR and  nDCG scores for multiple query pairs. 
-% 500 Query pairs was choosen randomly. 250 pairs from 'mountain - trees' and 250 pairs from 'sea - sunset'
+% 500 Query pairs was choosen randomly. 300 pairs from 'mountain - trees' and 200 pairs from 'sea - sunset'
 % Query pairs located in the qLabels.xls  file in the current directory )
 %
 %
