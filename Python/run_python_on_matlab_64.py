@@ -32,7 +32,7 @@ image_3 = np.array(image_3)
 
 from keras.applications.vgg16 import preprocess_input
 
-image_1 = preprocess_input(image_3, mode='tf')      # preprocessing the input data
+image_1 = preprocess_input(image_1, mode='tf')      # preprocessing the input data
 image_1 = np.reshape(image_1, (1, 224, 224, 3))
 
 image_2 = preprocess_input(image_2, mode='tf')      # preprocessing the input data
