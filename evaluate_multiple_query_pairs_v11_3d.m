@@ -4,7 +4,7 @@
 % akbacakk@gmail.com
 % THIS FILE COMPUTES MQUR and  nDCG scores for multiple query triples. 
 % 250 ''mountain - sea - trees' Query triples  was choosen randomly. 
-% Query pairs located in the qLabels_3d.xls  file in the current directory )
+% Query triples located in the qLabels_3d.xls  file in the current directory )
 %
 %
 %*****************************************************************************************
