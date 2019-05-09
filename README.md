@@ -1,1 +1,1 @@
-# DEEP MULTY QUERY IMAGE RETRIEVAL 
+# Deep Multiple-Query Image Retrieval
