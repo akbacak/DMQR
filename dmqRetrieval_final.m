@@ -208,7 +208,7 @@ function pushbutton2_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
     
     targets = handles.targets;
-
+    maxFront = handles.maxFront;
     queryIndex1 = handles.q1Idx;
     queryIndex2 = handles.q2Idx;
     data = handles.data;
@@ -246,7 +246,7 @@ set(handles.tictoc,'String',num2str(t))
     
      
     
-    maxFront = 10;
+   
     [pf_idx] = pareto_fronts(X, maxFront);
     for k=1:maxFront
         plot(pf_idx{k,1}(:,1), pf_idx{k,1}(:,2) , 'y-');
@@ -272,12 +272,13 @@ function FrontSelector_Callback(hObject, eventdata, handles)
 % Hints: get(hObject,'Value') returns position of slider
 %        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
 
+maxFront = handles.maxFront;
 filenames = handles.filenames;
 targets = handles.targets;
 X = handles.X;
 pf_idx = handles.pf_idx;
 
-maxFront = 10;
+
 currentFront = ((round(1+(maxFront-1)*get(hObject,'Value'))));
 
 set(handles.FrontNum,'String',num2str(currentFront));
@@ -537,7 +538,7 @@ function ImageSelector_Callback(hObject, eventdata, handles)
 
 
 
-
+maxFront = handles.maxFront;
 pf_idx = handles.pf_idx;
 X = handles.X;
 currentFront = handles.currentFront ;
@@ -567,7 +568,7 @@ hold off; plot(handles.X(:,1),handles.X(:,2),'.');
 hold on;
 
 
-maxFront = 10;
+
  [pf_idx] = pareto_fronts(X, maxFront);
  for k=1:maxFront
         plot(pf_idx{k,1}(:,1), pf_idx{k,1}(:,2) , 'y-');
@@ -1198,7 +1199,8 @@ function pushbutton11_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
- 
+    maxFront = handles.maxFront;
+    
     queryIndex1 = handles.q1Idx;
     queryIndex2 = handles.q2Idx;
     data = handles.data;
@@ -1238,7 +1240,7 @@ set(handles.tictoc2,'String',num2str(t))
     
      
     
-    maxFront = 10;
+   
     [pf_idx] = pareto_fronts(X, maxFront);
     for k=1:maxFront
         plot(pf_idx{k,1}(:,1), pf_idx{k,1}(:,2) , 'y-');
@@ -1843,15 +1845,13 @@ function pushbutton14_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-
+maxFront = handles.maxFront;
 filenames = handles.filenames;
 features = handles.features;
 pf_idx = handles.pf_idx;
 %MQUR_ALL  = handles.MQUR_ALL; 
 targets = handles.targets;
 X = handles.X;
-
-maxFront = 10;
 
 
 
@@ -2141,6 +2141,7 @@ function hashCodeSelection_f_Callback(hObject, eventdata, handles)
 
 % Hints: contents = cellstr(get(hObject,'String')) returns hashCodeSelection_f contents as cell array
 %        contents{get(hObject,'Value')} returns selected item from hashCodeSelection_f
+maxFront = 10;
 
 feature_dir = [pwd '/lamdaDataset/features/'];
 image_dir =[pwd '/lamdaDataset/imageFolder/']; 
@@ -2193,6 +2194,7 @@ handles.filenames = filenames;
 handles.targets = targets;
 handles.data = data;
 handles.features = features;
+handles.maxFront = maxFront;
 
 
 guidata(hObject, handles);
