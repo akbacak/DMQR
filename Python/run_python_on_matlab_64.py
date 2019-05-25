@@ -72,6 +72,10 @@ features_1 = model.predict(image_1, batch_size=64, verbose=0, steps=None)[0] #If
 features_2 = model.predict(image_2, batch_size=64, verbose=0, steps=None)[0] 
 features_3 = model.predict(image_3, batch_size=64, verbose=0, steps=None)[0]
 
+np.savetxt('Python/f1.txt', features_1,  fmt='%f',  delimiter=',')
+np.savetxt('Python/f2.txt', features_2,  fmt='%f',  delimiter=',')
+np.savetxt('Python/f3.txt', features_3,  fmt='%f',  delimiter=',')
+
 binary_codes_1 = features_1 > 0.5
 binary_codes_1 = binary_codes_1.astype(int)
 
