@@ -1,3 +1,4 @@
+% https://www.mathworks.com/matlabcentral/mlc-downloads/downloads/1c38ca31-840b-4491-ac07-bd3ef7b18ad3/ccec48ae-2dc7-451d-a705-3790374f6b5f/previews/FSLib_v6.2.1_2018/lib/litekmeans.m/index.html
 function [label, center, bCon, sumD, D] = litekmeans(X, k, varargin)
 %LITEKMEANS K-means clustering, accelerated by matlab matrix operations.
 %
