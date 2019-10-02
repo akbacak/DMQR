@@ -1,3 +1,4 @@
+% https://www.mathworks.com/matlabcentral/mlc-downloads/downloads/submissions/53921/versions/3/previews/CAC_for_clustering_demo_2015/related/EuDist2.m/index.html
 function D = EuDist2(fea_a,fea_b,bSqrt)
 %EUDIST2 Efficiently Compute the Euclidean Distance Matrix by Exploring the
 %Matlab matrix operations.
