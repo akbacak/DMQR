@@ -2154,30 +2154,30 @@ hashCode_index = get(handles.hashCodeSelection_f, 'Value');
 switch hashCode_index
            
     case 1
-        %load([data_dir '/hashCodes_64']); 
-        %data = hashCodes_64;
+        load([data_dir '/hashCodes_64']); 
+        data = hashCodes_64;
         load([feature_dir '/features_64']); 
         features = features_64;
-        data = features_64 > 0.5;
+        %data = features_64 > 0.5;
     case 2
-       %load([data_dir '/hashCodes_128']); 
-       %data = hashCodes_128;
+       load([data_dir '/hashCodes_128']); 
+       data = hashCodes_128;
        load([feature_dir '/features_128']); 
        features = features_128;
-       data = features_128 > 0.5;
+       %data = features_128 > 0.5;
     case 3
-        %load([data_dir '/hashCodes_256']); 
-        %data = hashCodes_256;
+        load([data_dir '/hashCodes_256']); 
+        data = hashCodes_256;
         load([feature_dir '/features_256']); 
         features = features_256;
-        data = features_256 > 0.5;
+        %data = features_256 > 0.5;
     case 4
         load([feature_dir '/features_512']); 
         features = features_512;
-        data = features_512 > 0.5;
+        %data = features_512 > 0.5;
         
-        %load([data_dir '/hashCodes_512']); 
-        %data = hashCodes_512;
+        load([data_dir '/hashCodes_512']); 
+        data = hashCodes_512;
 end
 
 
