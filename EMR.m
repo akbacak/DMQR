@@ -1,4 +1,4 @@
-function [H,  A , landmarks, Z] = EMRcomputeModel(data,opts)
+function [score, model] = EMR(data,y0,opts)
 % [score, model] = EMR(data,y0,opts): Efficient Manifold Ranking
 % Input:
 %       - data: the data matrix of size nSmp x nFea, where each row is a sample
@@ -44,7 +44,7 @@ if (~exist('opts','var'))
    opts = [];
 end
 
-p = 100;
+p = 1000;
 if isfield(opts,'p')
     p = opts.p;
 end
@@ -108,7 +108,6 @@ Z=sparse(Gidx(:),Gjdx(:),Gsdx(:),nSmp,p);
 
 model.Z = Z';
 
-
 % Efficient Ranking
 feaSum = full(sum(Z,1));
 D = Z*feaSum';
@@ -118,6 +117,10 @@ H = spdiags(D,0,nSmp,nSmp)*Z;
 
 C = speye(p);
 A = H'*H-(1/a)*C;
+
+tmp = H'*y0;
+tmp = A\tmp;
+score = y0 - H*tmp;
 
 
 

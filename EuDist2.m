@@ -1,62 +1,75 @@
-% https://www.mathworks.com/matlabcentral/mlc-downloads/downloads/submissions/53921/versions/3/previews/CAC_for_clustering_demo_2015/related/EuDist2.m/index.html
-function D = EuDist2(fea_a,fea_b,bSqrt)
-%EUDIST2 Efficiently Compute the Euclidean Distance Matrix by Exploring the
-%Matlab matrix operations.
-%
-%   D = EuDist(fea_a,fea_b)
-%   fea_a:    nSample_a * nFeature
-%   fea_b:    nSample_b * nFeature
-%   D:      nSample_a * nSample_a
-%       or  nSample_a * nSample_b
-%
-%    Examples:
-%
-%       a = rand(500,10);
-%       b = rand(1000,10);
-%
-%       A = EuDist2(a); % A: 500*500
-%       D = EuDist2(a,b); % D: 500*1000
-%
-%   version 2.1 --November/2011
-%   version 2.0 --May/2009
-%   version 1.0 --November/2005
-%
-%   Written by Deng Cai (dengcai AT gmail.com)
-
-rand('twister',5489);
-
-if ~exist('bSqrt','var')
-    bSqrt = 1;
-end
-
-if (~exist('fea_b','var')) || isempty(fea_b)
-    aa = sum(fea_a.*fea_a,2);
-    ab = fea_a*fea_a';
-    
-    if issparse(aa)
-        aa = full(aa);
-    end
-    
-    D = bsxfun(@plus,aa,aa') - 2*ab;
-    D(D<0) = 0;
-    if bSqrt
+function D = EuDist2(fea_a,fea_b,bSqrt) 
+% Euclidean Distance matrix 
+%   D = EuDist(fea_a,fea_b) 
+%   fea_a:    nSample_a * nFeature 
+%   fea_b:    nSample_b * nFeature 
+%   D:      nSample_a * nSample_a 
+%       or  nSample_a * nSample_b 
+ 
+ 
+if ~exist('bSqrt','var') 
+    bSqrt = 1; 
+end 
+ 
+ 
+if (~exist('fea_b','var')) | isempty(fea_b) 
+    [nSmp, nFea] = size(fea_a); 
+ 
+    aa = sum(fea_a.*fea_a,2); 
+    ab = fea_a*fea_a'; 
+     
+    aa = full(aa); 
+    ab = full(ab); 
+ 
+    if bSqrt 
+        D = sqrt(repmat(aa, 1, nSmp) + repmat(aa', nSmp, 1) - 2*ab); 
+        D = real(D); 
+    else 
+        D = repmat(aa, 1, nSmp) + repmat(aa', nSmp, 1) - 2*ab; 
+    end 
+     
+    D = max(D,D'); 
+    D = D - diag(diag(D)); 
+    D = abs(D); 
+else 
+    [nSmp_a, nFea] = size(fea_a); 
+    [nSmp_b, nFea] = size(fea_b); 
+     
+    aa = sum(fea_a.*fea_a,2); 
+    bb = sum(fea_b.*fea_b,2); 
+    ab = fea_a*fea_b'; 
+ 
+    aa = full(aa); 
+    bb = full(bb); 
+    ab = full(ab); 
+ 
+    if bSqrt 
+        % reduce memory 
+        %D = zeros(nSmp_a,nSmp_b);
+        D = -2*ab;
+        for col = 1:nSmp_b
+            D(:,col) = D(:,col) + aa;             
+        end
+        for row = 1:nSmp_a;
+            D(row,:) = D(row,:)+ bb';
+        end
+        %D = D - ab - ab;
+        %D = sqrt(repmat(aa, 1, nSmp_b) + repmat(bb', nSmp_a, 1) - 2*ab); 
         D = sqrt(D);
-    end
-    D = max(D,D');
-else
-    aa = sum(fea_a.*fea_a,2);
-    bb = sum(fea_b.*fea_b,2);
-    ab = fea_a*fea_b';
-
-    if issparse(aa)
-        aa = full(aa);
-        bb = full(bb);
-    end
-
-    D = bsxfun(@plus,aa,bb') - 2*ab;
-    D(D<0) = 0;
-    if bSqrt
-        D = sqrt(D);
-    end
-end
-
+        D = real(D); 
+    else
+        % reduce memory 
+        % D = zeros(nSmp_a,nSmp_b);
+        D = -2*ab;
+        for col = 1:nSmp_b
+            D(:,col) = D(:,col) + aa;             
+        end
+        for row = 1:nSmp_a;
+            D(row,:) = D(row,:)+ bb';
+        end
+        %D = D - ab - ab;
+        %D = repmat(aa, 1, nSmp_b) + repmat(bb', nSmp_a, 1) - 2*ab; 
+    end 
+     
+    D = abs(D); 
+end 
