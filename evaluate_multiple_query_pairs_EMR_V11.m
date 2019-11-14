@@ -3,13 +3,11 @@ close all;
 clc;
 
 load('lamdaDataset/hashCodes/filenames.mat');
-load('lamdaDataset/features/features_64.mat');
-%load('lamdaDataset/hashCodes/hashCodes_64.mat');
+load('lamdaDataset/hashCodes/hashCodes_64.mat');
 load('lamdaDataset/hashCodes/targets.mat');
 
     N = 2000;   % Number of samples in the Lamda Dataset
-    data = features_64; % Binary features (Hash codes) N x NumberHasBits
-    %data = hashCodes_64; % Binary features (Hash codes) N x NumberHasBits
+    data = hashCodes_64; % Binary features (Hash codes) N x NumberHasBits
     
     queryIndex = xlsread('qLabels_V2.xls');  % Reads randomly choosen query pairs from excell file
     queryIndex = transpose( queryIndex ); 
