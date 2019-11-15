@@ -1,3 +1,15 @@
+%*****************************************************************************************
+% Edited by Enver Akbacak , 10/2018
+% Marmara University, Istanbul
+% akbacakk@gmail.com
+% THIS FILE COMPUTES MQUR and  nDCG scores for multiple query pairs. 
+% 500 Query pairs was choosen randomly from LAMDA dataset. 200 pairs from 'mountain - trees' and 200 pairs from 'sea - sunset'
+% 50 query pairs from mountain & trees  and 50 query pairs from sunset & trees. Query pairs located in the qLabels_V2.xls  file in the current directory )
+%
+%
+%*****************************************************************************************
+
+
 clear all;
 close all;
 clc;
