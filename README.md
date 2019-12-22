@@ -1,5 +1,5 @@
 # DMQIR 
-This repo contains some GUIs writen in Matlab. The GUI uses multiple images as queries. Images are from LAMDA dataset which are available at http://www.lamda.nju.edu.cn/data_MIMLimage.ashx?AspxAutoDetectCookieSupport=1. 
+This repo contains some GUIs writen in Matlab. The GUIs use multiple images as queries. Images are from LAMDA dataset which are available at http://www.lamda.nju.edu.cn/data_MIMLimage.ashx?AspxAutoDetectCookieSupport=1. 
 
 
 # 1
@@ -23,5 +23,7 @@ The GUI dmqRetrieval_3d do the same thing for 3 queries from LAMDA dataset. The 
 # 5 
 You dont want to choose query images LAMDA but from anywehere like google?. Download any jpg formatted image and locate them in the ./Python folder. For two queries use dmqRetrieval_final_v2. But You should select image labels manually from GUI. If  you want query labels be predicted by GUI the use dmqRetrieval_final_v3. dmqRetrieval_final_v3_3d use any three jpg formatted
 images as queries.
+
+Feel free for any questin.
 
 # All details about this repo will be given after our publication accepted.
