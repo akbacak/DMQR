@@ -1,12 +1,12 @@
 # DMQIR 
-This repo contains some GUIs writen in Matlab. The GUIs use multiple images as queries. Images are from LAMDA dataset which are available at http://www.lamda.nju.edu.cn/data_MIMLimage.ashx?AspxAutoDetectCookieSupport=1. 
+This repo contains some GUIs written in Matlab. The GUIs use multiple images as queries. Images are from LAMDA dataset which are available at http://www.lamda.nju.edu.cn/data_MIMLimage.ashx?AspxAutoDetectCookieSupport=1. 
 
 
 # 1
 Generate hash codes of images by https://github.com/akbacak/DMLH2  repo.
 
 # 2 
-Convert hash codes from txt to mat format and locate the them in the ./lamdaDataset/hashCodes folder. Note that filenames.mat file contain image file names and targets.mat file contains image labels which are encodes as one hot. 
+Convert hash codes from txt to mat format and locate them in the ./lamdaDataset/hashCodes folder. Note that filenames.mat file contain image file names and targets.mat file contains image labels which are encoded as one hot. 
 
 # 3
 Just run any GUI, everything is straight forward after that. The GUI dmqRetrieval use any two LAMDA images as queries. 
@@ -21,7 +21,7 @@ Just run any GUI, everything is straight forward after that. The GUI dmqRetrieva
 The GUI dmqRetrieval_3d do the same thing for 3 queries from LAMDA dataset. The GUI dmqRetrieval_final use two queries from LAMDA but performs reranking among retrieved images.
 
 # 5 
-You dont want to choose query images LAMDA but from anywehere like google?. Download any jpg formatted image and locate them in the ./Python folder. For two queries use dmqRetrieval_final_v2. But You should select image labels manually from GUI. If  you want query labels be predicted by GUI the use dmqRetrieval_final_v3. dmqRetrieval_final_v3_3d use any three jpg formatted
+You don't want to choose query images LAMDA but from anywhere like google?. Download any jpg formatted image and locate them in the ./Python folder. For two queries use dmqRetrieval_final_v2. But You should select image labels manually from GUI. If you want query labels to be predicted by GUI the use dmqRetrieval_final_v3. dmqRetrieval_final_v3_3d use any three jpg formatted
 images as queries.
 
 Feel free for any question.
