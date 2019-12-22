@@ -1,5 +1,5 @@
 # DMQIR 
-This repo contains some GUIs written in Matlab. The GUIs use multiple images as queries. Images are from LAMDA dataset which are available at http://www.lamda.nju.edu.cn/data_MIMLimage.ashx?AspxAutoDetectCookieSupport=1. 
+This repo contains some GUIs written in Matlab. The GUIs use multiple images as queries. Images are from LAMDA dataset which is available at http://www.lamda.nju.edu.cn/data_MIMLimage.ashx?AspxAutoDetectCookieSupport=1. 
 
 
 # 1
