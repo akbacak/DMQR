@@ -26,4 +26,4 @@ images as queries.
 
 Feel free for any question.
 
-# All details about this repo will be given after our publication accepted.
+# All details about this repo will be given after our publication be published.
