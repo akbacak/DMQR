@@ -64,7 +64,7 @@ load('lamdaDataset/hashCodes/targets.mat');
         q2_label{l,:} = targets(queryIndex2(:,l), : ); % Label vector of Query 2
         
         b{l,:} = or(q1_label{l,:} , q2_label{l,:});    % beta in the equation 7 
-        b{l,:} = or( b{l,:},q2_label{l,:});
+        b{l,:} = or( b{l,:},q3_label{l,:});
         absolute_b{l,:} = nnz(b{l,:});                 % Number of non-zero elements in the beta, nnz is a Matlab Func.
         
          
