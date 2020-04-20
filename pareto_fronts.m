@@ -17,8 +17,8 @@ function [pf_idx] = pareto_fronts(X, num_fronts)
 
 
 pf=[];
-%input=unique(X,'rows');
-input=X;
+input=unique(X,'rows');
+%input=X;
 
 
 front_level = num_fronts; 
