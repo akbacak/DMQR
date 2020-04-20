@@ -18,7 +18,7 @@ Just run any GUI, everything is straight forward after that. The GUI dmqRetrieva
 6 Navigate on the current front by Image Number
 
 # 4 
-The GUI dmqRetrieval_3d do the same thing for 3 queries from LAMDA dataset. The GUI dmqRetrieval_final use two queries from LAMDA but performs reranking among retrieved images.
+The GUI dmqRetrieval_3d and dmqRetrieval_5d do the same thing as in step 3 for 3 and 5 queries respectively from LAMDA dataset. The GUI dmqRetrieval_final use two queries from LAMDA but performs reranking among retrieved images.
 
 # 5 
 You don't want to choose query images LAMDA but from anywhere like google?. Download any jpg formatted image and locate them in the ./Python folder. For two queries use dmqRetrieval_final_v2. But You should select image labels manually from GUI. If you want query labels to be predicted by GUI the use dmqRetrieval_final_v3. dmqRetrieval_final_v3_3d use any three jpg formatted
