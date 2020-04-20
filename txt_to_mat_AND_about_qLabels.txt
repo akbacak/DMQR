@@ -37,9 +37,11 @@ mountain/sea/sunset/trees
 
 qLabels_4d_but_totall_concept_2d
 ******************************************************
+250 query groups, each have 4 queries
+each query belongs to one concept
 125 groups are : mountain/trees/mountain/trees
 125 groups are : sea/sunset/sea/sunset
-
+there are not the same images in each group (column)
 
 
 qLabels_5d
@@ -52,6 +54,11 @@ desert/mountain/sea/sunset/trees
 
 qLabels_5d_but_totall_concept_3d
 ******************************************************
+250 query groups, each have 5 queries
+each query belongs to one concept
+125 groups are : mountain/sea/trees/mountain/sea
+125 groups are : sea/sunset/trees/sunset/trees
+there are not the same images in each group (column)
 
 
 
@@ -59,3 +66,4 @@ qLabels_5d_but_totall_concept_3d
 
 
 
+each query belongs to one concept
