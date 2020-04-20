@@ -4,8 +4,8 @@
 % akbacakk@gmail.com
 % THIS FILE COMPUTES MQUR and  nDCG scores for quintet query groups. 
 % 250  uintet query groups were choosen randomly. 
-% Query groups are located in the qLabels_5d.xls  file in the current directory )
-%
+% Query groups are located in the qLabels_4d.xls AND qLabels_4d_but_totall_concept_2d.xls 
+% file in the current directory )
 %
 %*****************************************************************************************
 tic
