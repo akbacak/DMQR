@@ -20,7 +20,7 @@ load('lamdaDataset/hashCodes/targets.mat');
     N = 2000;           % Number of samples in the Lamda Dataset
     data = hashCodes_128; % Binary features (Hash codes) N x NumberHasBits
     
-    queryIndex = xlsread('qLabels_5d.xls');  % Reads randomly choosen query pairs from excell file
+    queryIndex = xlsread('qLabels_5d_but_totall_concept_3d.xls');  % Reads randomly choosen query pairs from excell file
     queryIndex = transpose( queryIndex ); 
     queryIndex1 = queryIndex(1,:);        % First element of Query Pair
     queryIndex2 = queryIndex(2,:);        % Second element of Query Pair
