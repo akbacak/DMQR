@@ -8,8 +8,8 @@ load('lamdaDataset/hashCodes/targets.mat');
 
 N = 2000;           % Number of samples in the Lamda Dataset
 data = hashCodes_64; % Binary features (Hash codes) N x NumberHasBits
-queryIndex1 = 600;
-queryIndex2 = 1659;
+queryIndex1 = 562;
+queryIndex2 = 1761;
 
 q1 = data(queryIndex1,:);         % q1 & q2 are query pairs in the loop
 q2 = data(queryIndex2,:);
@@ -25,34 +25,41 @@ n_hamming_dist2 = mat2gray(hamming_dist2);
 X = zeros(2,N);
 X(1,:) = n_hamming_dist1;
 X(2,:) = n_hamming_dist2;
-    
+
 X = (X)';
-[K,L] = size(unique(X,'rows')) % The number of PPs = K
+[K,L] = size(unique(X,'rows')); % The number of PPs = K
+hold off; 
+plot(X(:,1),X(:,2),'*');
+set(gca,'FontSize',46);
+
+%title('Average values of nDCG scores along 10 Pareto fronts' ,'FontSize', 32)
+
+ylabel('d_1' ,'FontSize', 38)
+xlabel('d_2' ,'FontSize', 38) 
+hold on; 
+
 
 pf=[];
 
-input=X;
+input=unique(X,'rows');%
+%input=X;
 
-front_level = 4;
+front_level = 10;
 for k=1:front_level  % Number of fronts 
 
-   
-   
-pop_input = [];
-temp_pf = [];
-membership = [];
-temp_input = [];
-index = [];
-temp_pf = [];
-
-
+    pop_input = [];
+    temp_pf = [];
+    membership = [];
+    temp_input = [];
+    index = [];
+    temp_pf = [];
+       
 
     for i = 1:size(input,1)           
 
     
-        pop_input = repmat(input(i,:),size(input,1),1); 
+            pop_input = repmat(input(i,:),size(input,1),1); 
         
-       % if( pop_input(1,1) < 1000 )   
             temp_input = input;
             temp_input(i,:) = ones(1,size(input,2))*1000;  % O satırı kendisi ile kıyaslama         
             index = pop_input >= temp_input; % pop edilen mevcut satırı, satır satır X ile kıyasla, 
@@ -65,14 +72,9 @@ temp_pf = [];
             else
                 continue; % aksi halde döngüde bir sonraki kısma geç.
             end
-               
-            
-        %end
-                         
+                                            
     end
-    
-  
-    
+     
     membership = ismember(X, temp_pf,'rows'); 
     membership_indexes{k,:} = find(membership); 
     pf{k,1}(:,:) = X(membership_indexes{k,:},:);
@@ -81,6 +83,6 @@ temp_pf = [];
     pf_idx{k,1}(:,:) = sortrows( pf_idx{k,1}(:,:),1);    
       
     input = setdiff(input,pf{k,1} ,'rows');
+       
+   
 end
-    
-    
