@@ -272,7 +272,7 @@ set(handles.tictoc,'String',num2str(t))
      %scatter3(X(:,1),X(:,2),X(:,3),'k.');
      
     
-    maxFront = 10;
+    maxFront = 3;
     [pf_idx] = pareto_fronts(X, maxFront);
     for k=1:1
         scatter3(pf_idx{k,1}(:,1), pf_idx{k,1}(:,2) , pf_idx{k,1}(:,3)); 
@@ -301,7 +301,7 @@ function FrontSelector_Callback(hObject, eventdata, handles)
 
 targets = handles.targets;
 
-maxFront = 10;
+maxFront = 3;
 currentFront = ((round(1+(maxFront-1)*get(hObject,'Value'))));
 
 %set(handles.FrontIdx,'String',['Pareto depth:' num2str(currentFront)] );
@@ -318,7 +318,7 @@ view(3);
 rotate3d on;
 hold on;
 
- maxFront = 10;
+
  [pf_idx] = pareto_fronts(X, maxFront);
  
  %for k=1:maxFront
@@ -565,7 +565,7 @@ rotate3d on;
 hold on;
 
 
-maxFront = 10;
+maxFront = 3;
 [pf_idx] = pareto_fronts(X, maxFront);
  %for k=1:maxFront
  %       plot3(pf_idx{k,1}(:,1), pf_idx{k,1}(:,2) ,pf_idx{k,1}(:,3), 'y-');
@@ -1255,7 +1255,7 @@ set(handles.tictoc2,'String',num2str(t))
      %scatter3(X(:,1),X(:,2),X(:,3),'k.');
      
     
-    maxFront = 10;
+    maxFront = 3;
     [pf_idx] = pareto_fronts(X, maxFront);
     for k=1:maxFront
         scatter3(pf_idx{k,1}(:,1), pf_idx{k,1}(:,2) , pf_idx{k,1}(:,3)); 
@@ -1339,15 +1339,21 @@ hashCode_index = get(handles.hashCodeSelection_3d, 'Value');
 switch hashCode_index
            
     case 1
+       load([data_dir '/hashCodes_16']); 
+       data = hashCodes_16;
+    case 2
+       load([data_dir '/hashCodes_32']); 
+       data = hashCodes_32;       
+    case 3
         load([data_dir '/hashCodes_64']); 
         data = hashCodes_64;
-    case 2
+    case 4
        load([data_dir '/hashCodes_128']); 
        data = hashCodes_128;
-    case 3
+    case 5
         load([data_dir '/hashCodes_256']); 
         data = hashCodes_256;
-    case 4
+    case 6
         load([data_dir '/hashCodes_512']); 
         data = hashCodes_512;
 end

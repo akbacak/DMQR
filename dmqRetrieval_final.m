@@ -227,7 +227,7 @@ function pushbutton2_Callback(hObject, eventdata, handles)
     n_hamming_dist2 = mat2gray(hamming_dist2);
            
 t = toc;
-set(handles.tictoc,'String',num2str(t))
+%set(handles.tictoc,'String',num2str(t))
 
     X = zeros(2,N);
     X(1,:) = n_hamming_dist1;
@@ -538,7 +538,7 @@ function ImageSelector_Callback(hObject, eventdata, handles)
 
 
 
-maxFront = handles.maxFront;
+
 pf_idx = handles.pf_idx;
 X = handles.X;
 currentFront = handles.currentFront ;
@@ -568,7 +568,7 @@ hold off; plot(handles.X(:,1),handles.X(:,2),'.');
 hold on;
 
 
-
+ maxFront = 3;
  [pf_idx] = pareto_fronts(X, maxFront);
  for k=1:maxFront
         plot(pf_idx{k,1}(:,1), pf_idx{k,1}(:,2) , 'y-');
@@ -1845,6 +1845,7 @@ function pushbutton14_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
+
 maxFront = handles.maxFront;
 filenames = handles.filenames;
 features = handles.features;
@@ -2141,7 +2142,7 @@ function hashCodeSelection_f_Callback(hObject, eventdata, handles)
 
 % Hints: contents = cellstr(get(hObject,'String')) returns hashCodeSelection_f contents as cell array
 %        contents{get(hObject,'Value')} returns selected item from hashCodeSelection_f
-maxFront = 10;
+maxFront = 3;
 
 feature_dir = [pwd '/lamdaDataset/features/'];
 image_dir =[pwd '/lamdaDataset/imageFolder/']; 
@@ -2152,32 +2153,46 @@ load([data_dir '/targets']);   % Labels
 hashCode_index = get(handles.hashCodeSelection_f, 'Value');
 
 switch hashCode_index
-           
+    
     case 1
+        load([data_dir '/hashCodes_16']); 
+        data = hashCodes_16;
+        load([feature_dir '/features_16']); 
+        features = features_16;
+        %data = features_256 > 0.5;
+    case 2
+        load([data_dir '/hashCodes_32']); 
+        data = hashCodes_32;
+        load([feature_dir '/features_32']); 
+        features = features_32;
+        %data = features_512 > 0.5;
+           
+    case 3
         load([data_dir '/hashCodes_64']); 
         data = hashCodes_64;
         load([feature_dir '/features_64']); 
         features = features_64;
         %data = features_64 > 0.5;
-    case 2
+    case 4
        load([data_dir '/hashCodes_128']); 
        data = hashCodes_128;
        load([feature_dir '/features_128']); 
        features = features_128;
        %data = features_128 > 0.5;
-    case 3
+    case 5
         load([data_dir '/hashCodes_256']); 
         data = hashCodes_256;
         load([feature_dir '/features_256']); 
         features = features_256;
         %data = features_256 > 0.5;
-    case 4
-        load([feature_dir '/features_512']); 
-        features = features_512;
-        %data = features_512 > 0.5;
-        
+    case 6
         load([data_dir '/hashCodes_512']); 
         data = hashCodes_512;
+        load([feature_dir '/features_512']); 
+        features = features_512;
+        %data = features_512 > 0.5;    
+        
+       
 end
 
 

@@ -244,7 +244,7 @@ set(handles.tictoc,'String',num2str(t))
     
      
     
-    maxFront = 10;
+    maxFront = 3;
     [pf_idx] = pareto_fronts(X, maxFront);
     for k=1:maxFront
         plot(pf_idx{k,1}(:,1), pf_idx{k,1}(:,2) , 'y-');
@@ -252,7 +252,6 @@ set(handles.tictoc,'String',num2str(t))
     xlabel('c1');
     ylabel('c2'); 
 
-   
     handles.pf_idx = pf_idx;
     handles.X = X;
        
@@ -272,7 +271,7 @@ function FrontSelector_Callback(hObject, eventdata, handles)
 
 targets = handles.targets;
 
-maxFront = 10;
+maxFront = 3;
 currentFront = ((round(1+(maxFront-1)*get(hObject,'Value'))));
 
 %set(handles.FrontIdx,'String',['Pareto depth:' num2str(currentFront)] );
@@ -287,7 +286,7 @@ axes(handles.axes3);
 hold off; plot(handles.X(:,1),handles.X(:,2),'.');
 hold on;
 
- maxFront = 10;
+ maxFront = 3;
  [pf_idx] = pareto_fronts(X, maxFront);
  
  for k=1:maxFront
@@ -521,7 +520,7 @@ hold off; plot(handles.X(:,1),handles.X(:,2),'.');
 hold on;
 
 
-maxFront = 10;
+maxFront = 3;
  [pf_idx] = pareto_fronts(X, maxFront);
  for k=1:maxFront
         plot(pf_idx{k,1}(:,1), pf_idx{k,1}(:,2) , 'y-');
@@ -1192,7 +1191,7 @@ set(handles.tictoc2,'String',num2str(t))
     
      
     
-    maxFront = 10;
+    maxFront = 3;
     [pf_idx] = pareto_fronts(X, maxFront);
     for k=1:maxFront
         plot(pf_idx{k,1}(:,1), pf_idx{k,1}(:,2) , 'y-');
@@ -1253,17 +1252,22 @@ load([data_dir '/targets']);   % Labels
 hashCode_index = get(handles.hashCodeSelection, 'Value');
 
 switch hashCode_index
-           
     case 1
+       load([data_dir '/hashCodes_16']); 
+       data = hashCodes_16;
+    case 2
+       load([data_dir '/hashCodes_32']); 
+       data = hashCodes_32;       
+    case 3
         load([data_dir '/hashCodes_64']); 
         data = hashCodes_64;
-    case 2
+    case 4
        load([data_dir '/hashCodes_128']); 
        data = hashCodes_128;
-    case 3
+    case 5
         load([data_dir '/hashCodes_256']); 
         data = hashCodes_256;
-    case 4
+    case 6
         load([data_dir '/hashCodes_512']); 
         data = hashCodes_512;
 end

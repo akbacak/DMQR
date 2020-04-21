@@ -104,7 +104,8 @@ function pushbutton2_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton2 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-    
+  
+maxFront = handles.maxFront;
   data = handles.data;
  
 
@@ -158,7 +159,7 @@ set(handles.tictoc,'String',num2str(t))
     
      
     
-    maxFront = 10;
+   
     [pf_idx] = pareto_fronts(X, maxFront);
     for k=1:maxFront
         plot(pf_idx{k,1}(:,1), pf_idx{k,1}(:,2) , 'y-');
@@ -184,12 +185,13 @@ function FrontSelector_Callback(hObject, eventdata, handles)
 % Hints: get(hObject,'Value') returns position of slider
 %        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
 
+maxFront = handles.maxFront;
 filenames = handles.filenames;
 targets = handles.targets;
 X = handles.X;
 pf_idx = handles.pf_idx;
 
-maxFront = 10;
+
 currentFront = ((round(1+(maxFront-1)*get(hObject,'Value'))));
 
 set(handles.FrontNum,'String',num2str(currentFront));
@@ -447,7 +449,7 @@ function ImageSelector_Callback(hObject, eventdata, handles)
 
 
 
-
+maxFront = handles.maxFront;
 pf_idx = handles.pf_idx;
 X = handles.X;
 currentFront = handles.currentFront ;
@@ -477,7 +479,7 @@ hold off; plot(handles.X(:,1),handles.X(:,2),'.');
 hold on;
 
 
-maxFront = 10;
+
  [pf_idx] = pareto_fronts(X, maxFront);
  for k=1:maxFront
         plot(pf_idx{k,1}(:,1), pf_idx{k,1}(:,2) , 'y-');
@@ -892,7 +894,7 @@ function pushbutton11_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton11 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
+  maxFront = handles.maxFront;
   data = handles.data;
  
 
@@ -951,7 +953,6 @@ set(handles.tictoc2,'String',num2str(t))
     
      
     
-    maxFront = 10;
     [pf_idx] = pareto_fronts(X, maxFront);
     for k=1:maxFront
         plot(pf_idx{k,1}(:,1), pf_idx{k,1}(:,2) , 'y-');
@@ -1563,7 +1564,7 @@ pf_idx = handles.pf_idx;
 %MQUR_ALL  = handles.MQUR_ALL; 
 targets = handles.targets;
 X = handles.X;
-maxFront = 10;
+
        
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
@@ -1944,7 +1945,7 @@ function hashCodeSelection_f2_Callback(hObject, eventdata, handles)
 % Hints: contents = cellstr(get(hObject,'String')) returns hashCodeSelection_f2 contents as cell array
 %        contents{get(hObject,'Value')} returns selected item from hashCodeSelection_f2
 
-maxFront = 10;
+maxFront = 3;
 feature_dir = [pwd '/lamdaDataset/features/'];
 
 system('/usr/bin/convert Python/q1.jpg -resize 256x256! Python/q1.jpg ');
@@ -1959,8 +1960,36 @@ load([data_dir '/targets']);   % Labels
 hashCode_index = get(handles.hashCodeSelection_f2, 'Value');
 
 switch hashCode_index
-           
+    
     case 1
+        load([data_dir '/hashCodes_16']); 
+        data = hashCodes_16;
+        load([feature_dir '/features_16']); 
+        features = features_16;
+        %data = features_256 > 0.5;
+        axes(handles.axes1);
+        imshow(imread('Python/q1.jpg')); axis image;
+        axes(handles.axes2);
+        imshow(imread('Python/q2.jpg')); axis image;
+        
+        system('python Python/run_python_on_matlab_16.py');
+      
+        
+        
+    case 2
+        load([data_dir '/hashCodes_32']); 
+        data = hashCodes_32;
+        load([feature_dir '/features_32']); 
+        features = features_32;
+        %data = features_512 > 0.5;
+        axes(handles.axes1);
+        imshow(imread('Python/q1.jpg')); axis image;
+        axes(handles.axes2);
+        imshow(imread('Python/q2.jpg')); axis image;
+        
+        system('python Python/run_python_on_matlab_32.py');
+           
+    case 3
         load([data_dir '/hashCodes_64']); 
         data = hashCodes_64;
         load([feature_dir '/features_64']); 
@@ -1975,7 +2004,7 @@ switch hashCode_index
      
         
                 
-    case 2
+    case 4
        load([data_dir '/hashCodes_128']); 
        data = hashCodes_128;
        load([feature_dir '/features_128']); 
@@ -1990,7 +2019,7 @@ switch hashCode_index
   
       
        
-    case 3
+    case 5
         load([data_dir '/hashCodes_256']); 
         data = hashCodes_256;
         load([feature_dir '/features_256']); 
@@ -2005,7 +2034,7 @@ switch hashCode_index
       
         
         
-    case 4
+    case 6
         load([data_dir '/hashCodes_512']); 
         data = hashCodes_512;
         load([feature_dir '/features_512']); 
