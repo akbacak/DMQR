@@ -3,34 +3,35 @@
 % Marmara University, Istanbul
 % akbacakk@gmail.com
 % THIS FILE COMPUTES MQUR and  nDCG scores for multiple query pairs. 
-% 500 Query pairs was choosen randomly. 300 pairs from 'mountain - trees' and 200 pairs from 'sea - sunset'
-% Query pairs located in the qLabels.xls  file in the current directory )
+% 
+% Query pairs located in the qLabels_V2.xls  file in the current directory )
 %
 %
 %*****************************************************************************************
-tic
-clear all;
 close all;
+clear all;
 clc;
 
-load('lamdaDataset/hashCodes/filenames.mat');
-load('lamdaDataset/hashCodes/hashCodes_512.mat');
-load('lamdaDataset/hashCodes/targets.mat');
 
-    N = 2000;           % Number of samples in the Lamda Dataset
+load('/home/ubuntu/Desktop/Thesis_Follow_Up_2/dmqRetrieval/streetsDataset/hashCodes/filenames.mat');
+load('/home/ubuntu/Desktop/Thesis_Follow_Up_2/dmqRetrieval/streetsDataset/hashCodes/hashCodes_512.mat');
+load('/home/ubuntu/Desktop/Thesis_Follow_Up_2/dmqRetrieval/streetsDataset/hashCodes/targets.mat');
+
+    N = 703;           % Number of samples in the Lamda Dataset
     data = hashCodes_512; % Binary features (Hash codes) N x NumberHasBits
     
-    queryIndex = xlsread('qLabels.xls');  % Reads randomly choosen query pairs from excell file
+    queryIndex = xlsread('streetsDataset/streets_2d.xls');  % Reads randomly choosen query pairs from excell file
     queryIndex = transpose( queryIndex ); 
     queryIndex1 = queryIndex(1,:);        % First element of Query Pair
     queryIndex2 = queryIndex(2,:);        % Second element of Query Pair
+    %queryIndex1 = 600;
+    %queryIndex2 = 1699;     
     
     
-    for l = 1:30                   % Number of Query Pairs
-        
+    for l = 1:240                % Number of Query Pairs
+              
         q1 = data(queryIndex1,:);         % q1 & q2 are query pairs in the loop
-        q2 = data(queryIndex2,:);   
-                 
+        q2 = data(queryIndex2,:);
         q1_rep{l,:} = repmat(q1(l,:),N,1); % Make query matrix size to the same as data matrix size
         q2_rep{l,:} = repmat(q2(l,:),N,1);      
         xor_data_q1new{l,:} = xor(data, q1_rep{l,:}); % xor of data and query matrices
@@ -47,10 +48,12 @@ load('lamdaDataset/hashCodes/targets.mat');
         X(2,:) = hamming_dist2{l,:};
     
         X = (X)';
+        [K,~] = size(unique(X,'rows')); % The number of PPs = K
+
                 
-        maxFront = 10; 
+        maxFront = 2; 
         
-        [pf_idx] = pareto_fronts(X, maxFront);   % THIS GIVES  FOR ONLY ONE QUERY NOT ALL OF THEM
+        [pf_idx] = pareto_fronts(X, maxFront);   
         
         
         q1_label{l,:} = targets(queryIndex1(:,l), : ); % Label vector of Query 1
@@ -66,8 +69,8 @@ load('lamdaDataset/hashCodes/targets.mat');
                                      
             [R(l,j) , C(l,j)] = size(Labels{l,j});        
             
-              
-           
+            
+                      
             
             switch (mod(R(l,j) ,2) == 1)
                 case 1
@@ -90,8 +93,8 @@ load('lamdaDataset/hashCodes/targets.mat');
                         
             
             
-            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-             rtr_idx{j,1} = [];
+           %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            rtr_idx{j,1} = [];
 
     
             [v(j) , k(j)] = size(MQUR_ALL{l,1}(j,:)); % k(ll) is the size of column vector of ll th front
@@ -107,19 +110,13 @@ load('lamdaDataset/hashCodes/targets.mat');
              
              [kk(j) zz(j)] = size( rtr_idx{j,1}(:) );
              kk = kk';
-             count_rtr = sum(kk(:));
+             count_rtr = sum(kk(:)); 
           
            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                     
+           
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
+           
             
              
             G{l,j} = [];
@@ -160,7 +157,8 @@ load('lamdaDataset/hashCodes/targets.mat');
                     
              
              
-                    left_DG{l,j}(:,1)   =   left_G{l,j}(:,1);
+                    %left_DG{l,j}(:,1)   =   left_G{l,j}(:,1);
+                    left_DG   =   left_G;
                     i_left_DG{l,j}(:,1) = i_left_G{l,j}(:,1);
              
                     for d = 2 : e_rigth(l,j)
@@ -214,11 +212,12 @@ load('lamdaDataset/hashCodes/targets.mat');
              n_DCG{l,j} = horzcat(flip_n_left_DCG{l,j}, n_rigth_DCG{l,j});
                  
             
-                 
+           
+             
         end
     end
     
-    toc
+ 
    
 
     

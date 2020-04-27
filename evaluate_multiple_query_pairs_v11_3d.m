@@ -2,32 +2,32 @@
 % Edited by Enver Akbacak , 10/2018
 % Marmara University, Istanbul
 % akbacakk@gmail.com
-% THIS FILE COMPUTES MQUR and  nDCG scores for multiple query triples. 
-% 250 ''mountain - sea - trees' Query triples  was choosen randomly. 
-% Query triples located in the qLabels_3d.xls  file in the current directory )
+% THIS FILE COMPUTES MQUR and  nDCG scores for multiple query pairs. 
+% 
+% Query pairs located in the qLabels_V2.xls  file in the current directory )
 %
 %
 %*****************************************************************************************
-tic
-clear all;
 close all;
+clear all;
 clc;
 
-load('lamdaDataset/hashCodes/filenames.mat');
-load('lamdaDataset/hashCodes/hashCodes_64.mat');
-load('lamdaDataset/hashCodes/targets.mat');
 
-    N = 2000;           % Number of samples in the Lamda Dataset
-    data = hashCodes_64; % Binary features (Hash codes) N x NumberHasBits
+load('/home/ubuntu/Desktop/Thesis_Follow_Up_2/dmqRetrieval/streetsDataset/hashCodes/filenames.mat');
+load('/home/ubuntu/Desktop/Thesis_Follow_Up_2/dmqRetrieval/streetsDataset/hashCodes/hashCodes_256.mat');
+load('/home/ubuntu/Desktop/Thesis_Follow_Up_2/dmqRetrieval/streetsDataset/hashCodes/targets.mat');
+
+    N = 703;           % Number of samples in the Lamda Dataset
+    data = hashCodes_256; % Binary features (Hash codes) N x NumberHasBits
     
-    queryIndex = xlsread('qLabels_3d.xls');  % Reads randomly choosen query pairs from excell file
+    queryIndex = xlsread('streetsDataset/streets_3d.xls');
     queryIndex = transpose( queryIndex ); 
     queryIndex1 = queryIndex(1,:);        % First element of Query Pair
     queryIndex2 = queryIndex(2,:);        % Second element of Query Pair
     queryIndex3 = queryIndex(3,:);
     
     
-    for l = 1:250                  % Number of Query Pairs
+    for l = 1:240                 % Number of Query Pairs
         
         q1 = data(queryIndex1,:);         % q1 & q2 are query pairs in the loop
         q2 = data(queryIndex2,:); 
@@ -54,14 +54,17 @@ load('lamdaDataset/hashCodes/targets.mat');
         X(3,:) =  norm_hamming_dist3{l,:};
     
         X = (X)';
+        [K,~] = size(unique(X,'rows')); % The number of PPs = K
+
                 
-        maxFront = 10; 
+        maxFront = 2; 
         
         [pf_idx] = pareto_fronts(X, maxFront);
         
         
         q1_label{l,:} = targets(queryIndex1(:,l), : ); % Label vector of Query 1
         q2_label{l,:} = targets(queryIndex2(:,l), : ); % Label vector of Query 2
+        q3_label{l,:} = targets(queryIndex3(:,l), : ); % Label vector of Query 2
         
         b{l,:} = or(q1_label{l,:} , q2_label{l,:});    % beta in the equation 7 
         b{l,:} = or( b{l,:},q3_label{l,:});
@@ -194,8 +197,7 @@ load('lamdaDataset/hashCodes/targets.mat');
         end
     end
     
-    toc
-   
+     
 
     for ll=1:l
     for jj=1:j

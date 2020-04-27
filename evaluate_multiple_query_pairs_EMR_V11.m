@@ -1,23 +1,33 @@
-clear all;
+%*****************************************************************************************
+% Edited by Enver Akbacak , 10/2018
+% Marmara University, Istanbul
+% akbacakk@gmail.com
+% THIS FILE COMPUTES MQUR and  nDCG scores for multiple query pairs. 
+% 
+% Query pairs located in the qLabels_V2.xls  file in the current directory )
+%
+%
+%*****************************************************************************************
 close all;
+clear all;
 clc;
 
-load('lamdaDataset/hashCodes/filenames.mat');
-load('lamdaDataset/hashCodes/hashCodes_512.mat');
-load('lamdaDataset/hashCodes/targets.mat');
 
-    N = 2000;   % Number of samples in the Lamda Dataset
+load('/home/ubuntu/Desktop/Thesis_Follow_Up_2/dmqRetrieval/streetsDataset/hashCodes/filenames.mat');
+load('/home/ubuntu/Desktop/Thesis_Follow_Up_2/dmqRetrieval/streetsDataset/hashCodes/hashCodes_512.mat');
+load('/home/ubuntu/Desktop/Thesis_Follow_Up_2/dmqRetrieval/streetsDataset/hashCodes/targets.mat');
+
+    N = 703;           % Number of samples in the Lamda Dataset
     data = hashCodes_512; % Binary features (Hash codes) N x NumberHasBits
     
-    queryIndex = xlsread('qLabels_V2.xls');  % Reads randomly choosen query pairs from excell file
+    queryIndex = xlsread('streetsDataset/streets_2d.xls');  % Reads randomly choosen query pairs from excell file
     queryIndex = transpose( queryIndex ); 
-    %queryIndex1 = queryIndex(1,:); % First element of Query Pair
-    %queryIndex2 = queryIndex(2,:); % Second element of Qury Pair
-    %queryIndex1 = 543;
-    %queryIndex2 = 1717;
+    queryIndex1 = queryIndex(1,:);        % First element of Query Pair
+    queryIndex2 = queryIndex(2,:);        % Second element of Query Pair
+    %queryIndex1 = 600;
+    %queryIndex2 = 1699;     
     
-    
-    for l = 1:500  % Number of Query Pairs
+    for l = 1:240  % Number of Query Pairs
         
         queryIndex1(l) = queryIndex(1,l);
         queryIndex2(l) = queryIndex(2,l);
@@ -45,8 +55,9 @@ load('lamdaDataset/hashCodes/targets.mat');
         X(2,:) = dist2{l,:};
     
         X = (X)';
+        [K,~] = size(unique(X,'rows')); % The number of PPs = K
                 
-        maxFront = 10; 
+        maxFront = 2; 
         
         [pf_idx] = pareto_fronts(X, maxFront);   
         
@@ -109,17 +120,12 @@ load('lamdaDataset/hashCodes/targets.mat');
              count_rtr = sum(kk(:));
           
            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                     
             
             
             
             
-            
-            
-            
-            
-            
-            
-            
+               
              
             G{l,j} = [];
             rigth_G{l,j} = [];
@@ -218,17 +224,4 @@ load('lamdaDataset/hashCodes/targets.mat');
     end
     
  
- 
- %*****************************************************************************************
-% Edited by Enver Akbacak , 10/2018
-% Marmara University, Istanbul
-% akbacakk@gmail.com
-% THIS FILE COMPUTES MQUR and  nDCG scores for multiple query pairs. 
-% 500 Query pairs was choosen randomly from LAMDA dataset. 200 pairs from 'mountain - trees' and 200 pairs from 'sea - sunset'
-% 50 query pairs from mountain & trees  and 50 query pairs from sunset & trees. Query pairs located in the qLabels_V2.xls  file in the current directory )
-%
-%
-%*****************************************************************************************
-
-
    
