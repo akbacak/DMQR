@@ -1,5 +1,5 @@
 # DMQIR 
-This repo contains some GUIs written in Matlab. The GUIs use multiple images as queries. Images are from LAMDA dataset which is available at http://www.lamda.nju.edu.cn/data_MIMLimage.ashx?AspxAutoDetectCookieSupport=1. 
+This repo contains some GUIs written in Matlab. The GUIs use multiple images as queries. Images are from LAMDA dataset which is available at http://www.lamda.nju.edu.cn/data_MIMLimage.ashx?AspxAutoDetectCookieSupport=1. And, Streets dataset which is located at https://drive.google.com/drive/folders/1xriB2PCJUmoVsJSDR8nImK1RtzDs0e45?usp=sharing .
 
 # 1
 Generate hash codes of images by https://github.com/akbacak/DMLH2  repo.
