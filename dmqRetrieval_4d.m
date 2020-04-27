@@ -290,7 +290,7 @@ set(handles.tictoc,'String',num2str(t))
      %scatter3(X(:,1),X(:,2),X(:,3),'k.');
    %}   
     
-    maxFront = 3;
+    maxFront = 5;
     [pf_idx] = pareto_fronts(X, maxFront);
     
    %{
@@ -321,7 +321,7 @@ function FrontSelector_Callback(hObject, eventdata, handles)
 
 targets = handles.targets;
 
-maxFront = 3;
+maxFront = 5;
 currentFront = ((round(1+(maxFront-1)*get(hObject,'Value'))));
 
 %set(handles.FrontIdx,'String',['Pareto depth:' num2str(currentFront)] );
@@ -596,7 +596,7 @@ R3 = min(frontSize,currentImage+3);
 %hold on;
 
 
-maxFront = 3;
+maxFront = 5;
 [pf_idx] = pareto_fronts(X, maxFront);
  %for k=1:maxFront
  %       plot3(pf_idx{k,1}(:,1), pf_idx{k,1}(:,2) ,pf_idx{k,1}(:,3), 'y-');
@@ -1286,7 +1286,7 @@ set(handles.tictoc2,'String',num2str(t))
      %scatter3(X(:,1),X(:,2),X(:,3),'k.');
      
     
-    maxFront = 3;
+    maxFront = 5;
     [pf_idx] = pareto_fronts(X, maxFront);
     for k=1:maxFront
         scatter3(pf_idx{k,1}(:,1), pf_idx{k,1}(:,2) , pf_idx{k,1}(:,3)); 
@@ -1360,10 +1360,26 @@ function hashCodeSelection_3d_Callback(hObject, eventdata, handles)
 % Hints: contents = cellstr(get(hObject,'String')) returns hashCodeSelection_3d contents as cell array
 %        contents{get(hObject,'Value')} returns selected item from hashCodeSelection_3d
 
-image_dir =[pwd '/lamdaDataset/imageFolder/']; 
-data_dir = [pwd '/lamdaDataset/hashCodes'];
-load([data_dir '/filenames']); % File names
-load([data_dir '/targets']);   % Labels
+%image_dir =[pwd '/streetsDataset/imageFolder/']; 
+%data_dir = [pwd '/streetsDataset/hashCodes'];
+%load([data_dir '/filenames']); % File names
+%load([data_dir '/targets']);   % Labels
+
+
+dataset_index = get(handles.Dataset, 'Value');
+switch dataset_index 
+    case 1
+        image_dir =[pwd '/lamdaDataset/imageFolder/']; 
+        data_dir = [pwd '/lamdaDataset/hashCodes'];
+        load([data_dir '/filenames']); % File names
+        load([data_dir '/targets']);   % Labels
+        
+    case 2
+        image_dir =[pwd '/streetsDataset/imageFolder/']; 
+        data_dir = [pwd '/streetsDataset/hashCodes'];
+        load([data_dir '/filenames']); % File names
+        load([data_dir '/targets']);   % Labels
+end
 
 hashCode_index = get(handles.hashCodeSelection_3d, 'Value');
 
