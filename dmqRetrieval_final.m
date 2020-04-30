@@ -2143,12 +2143,30 @@ function hashCodeSelection_f_Callback(hObject, eventdata, handles)
 % Hints: contents = cellstr(get(hObject,'String')) returns hashCodeSelection_f contents as cell array
 %        contents{get(hObject,'Value')} returns selected item from hashCodeSelection_f
 maxFront = 3;
+dataset_index = get(handles.Dataset, 'Value');
+switch dataset_index 
+    case 1
+        feature_dir = [pwd '/lamdaDataset/features/'];
+        image_dir =[pwd '/lamdaDataset/imageFolder/']; 
+        data_dir = [pwd '/lamdaDataset/hashCodes'];
+        load([data_dir '/filenames']); % File names
+        load([data_dir '/targets']);   % Labels
+        
+    case 2
+        feature_dir = [pwd '/streetsDataset/features/'];
+        image_dir =[pwd '/streetsDataset/imageFolder/']; 
+        data_dir = [pwd '/streetsDataset/hashCodes'];
+        load([data_dir '/filenames']); % File names
+        load([data_dir '/targets']);   % Labels
+end
 
+%{
 feature_dir = [pwd '/lamdaDataset/features/'];
 image_dir =[pwd '/lamdaDataset/imageFolder/']; 
 data_dir = [pwd '/lamdaDataset/hashCodes'];
 load([data_dir '/filenames']); % File names
 load([data_dir '/targets']);   % Labels
+%}
 
 hashCode_index = get(handles.hashCodeSelection_f, 'Value');
 
