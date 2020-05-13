@@ -198,7 +198,7 @@ function FrontSelector_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'Value') returns position of slider
 %        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
- maxFront = handles.maxFront; 
+maxFront = handles.maxFront; 
 filenames = handles.filenames;
 targets = handles.targets;
 X = handles.X;
@@ -439,7 +439,7 @@ v=13;
 
 % This code show images in each front where MQUR == 1
 
-for n = (g(ll)+v):36 
+for n = (g(ll)+v):22 
         cla(handles.(['axes' num2str(n)]) ,'reset');
 end
 
@@ -1741,20 +1741,7 @@ final_rtr_idx = final_rtr(:,2);
          cla(handles.axes20,'reset');
          cla(handles.axes21,'reset');
          cla(handles.axes22,'reset');
-         cla(handles.axes23,'reset');
-         cla(handles.axes24,'reset');
-         cla(handles.axes25,'reset');
-         cla(handles.axes26,'reset');
-         cla(handles.axes27,'reset');
-         cla(handles.axes28,'reset');
-         cla(handles.axes29,'reset');
-         cla(handles.axes30,'reset');
-         cla(handles.axes31,'reset');
-         cla(handles.axes32,'reset');
-         cla(handles.axes33,'reset');
-         cla(handles.axes34,'reset');
-         cla(handles.axes35,'reset');
-         cla(handles.axes36,'reset');
+         
     
         axes(handles.axes13);
         fname = [handles.image_dir handles.filenames{final_rtr_idx(1,1)}];
@@ -1823,98 +1810,7 @@ final_rtr_idx = final_rtr(:,2);
         axis image
         
        
-        axes(handles.axes23);
-        fname = [handles.image_dir handles.filenames{final_rtr_idx(11,1)}];
-        imshow(imread(fname)); 
-        set(handles.edit29,'string',num2str( handles.filenames{final_rtr_idx(11,1)}));
-        axis image
         
-    
-        axes(handles.axes24);
-        fname = [handles.image_dir handles.filenames{final_rtr_idx(12,1)}];
-        imshow(imread(fname)); 
-        set(handles.edit30,'string',num2str( handles.filenames{final_rtr_idx(12,1)}));
-        axis image
-        
-     
-        axes(handles.axes25);
-        fname = [handles.image_dir handles.filenames{final_rtr_idx(13,1)}];
-        imshow(imread(fname)); 
-        set(handles.edit31,'string',num2str( handles.filenames{final_rtr_idx(13,1)}));
-        axis image
-
-        axes(handles.axes26);
-        fname = [handles.image_dir handles.filenames{final_rtr_idx(14,1)}];
-        imshow(imread(fname)); 
-        set(handles.edit32,'string',num2str( handles.filenames{final_rtr_idx(14,1)}));
-        axis image
-        
-       
-        axes(handles.axes27);
-        fname = [handles.image_dir handles.filenames{final_rtr_idx(15,1)}];
-        imshow(imread(fname)); 
-        set(handles.edit33,'string',num2str( handles.filenames{final_rtr_idx(15,1)}));
-        axis image
-       
-        axes(handles.axes28);
-        fname = [handles.image_dir handles.filenames{final_rtr_idx(16,1)}];
-        imshow(imread(fname)); 
-        set(handles.edit34,'string',num2str( handles.filenames{final_rtr_idx(16,1)}));
-        axis image
-        
-      
-        axes(handles.axes29);
-        fname = [handles.image_dir handles.filenames{final_rtr_idx(17,1)}];
-        imshow(imread(fname)); 
-        set(handles.edit35,'string',num2str( handles.filenames{final_rtr_idx(17,1)}));
-        axis image
-      
-        axes(handles.axes30);
-        fname = [handles.image_dir handles.filenames{final_rtr_idx(18,1)}];
-        imshow(imread(fname)); 
-        set(handles.edit36,'string',num2str( handles.filenames{final_rtr_idx(18,1)}));
-        axis image
-        
-      
-        axes(handles.axes31);
-        fname = [handles.image_dir handles.filenames{final_rtr_idx(19,1)}];
-        imshow(imread(fname)); 
-        set(handles.edit37,'string',num2str( handles.filenames{final_rtr_idx(19,1)}));
-        axis image
-        
-        
-        axes(handles.axes32);
-        fname = [handles.image_dir handles.filenames{final_rtr_idx(20,1)}];
-        imshow(imread(fname)); 
-        set(handles.edit38,'string',num2str( handles.filenames{final_rtr_idx(20,1)}));
-        axis image
-      
-        axes(handles.axes33);
-        fname = [handles.image_dir handles.filenames{final_rtr_idx(21,1)}];
-        imshow(imread(fname)); 
-        set(handles.edit39,'string',num2str( handles.filenames{final_rtr_idx(21,1)}));
-        axis image
-        
-     
-        axes(handles.axes34);
-        fname = [handles.image_dir handles.filenames{final_rtr_idx(22,1)}];
-        imshow(imread(fname)); 
-        set(handles.edit40,'string',num2str( handles.filenames{final_rtr_idx(22,1)}));
-        axis image
-        
-       
-        axes(handles.axes35);
-        fname = [handles.image_dir handles.filenames{final_rtr_idx(23,1)}];
-        imshow(imread(fname)); 
-        set(handles.edit41,'string',num2str( handles.filenames{final_rtr_idx(23,1)}));
-        axis image
-        
-        axes(handles.axes36);
-        fname = [handles.image_dir handles.filenames{final_rtr_idx(24,1)}];
-        imshow(imread(fname)); 
-        set(handles.edit42,'string',num2str( handles.filenames{final_rtr_idx(24,1)}));
-        axis image
-
  guidata(hObject, handles);
        
 
@@ -2037,8 +1933,38 @@ load([data_dir '/targets']);   % Labels
 hashCode_index = get(handles.hashCodeSelection_f2, 'Value');
 
 switch hashCode_index
-           
+    
     case 1
+        load([data_dir '/hashCodes_16']); 
+        data = hashCodes_16;
+        load([feature_dir '/features_16']); 
+        features = features_16;       
+        axes(handles.axes1);
+        imshow(imread('Python/q1.jpg')); axis image;
+        axes(handles.axes2);
+        imshow(imread('Python/q2.jpg')); axis image;
+        axes(handles.axes37);
+        imshow(imread('Python/q3.jpg')); axis image;
+        
+        system('python Python/run_python_on_matlab_16.py');
+     
+        
+                
+    case 2
+       load([data_dir '/hashCodes_32']); 
+       data = hashCodes_32;
+       load([feature_dir '/features_32']); 
+       features = features_32;
+       axes(handles.axes1);
+       imshow(imread('Python/q1.jpg')); axis image;
+       axes(handles.axes2);
+       imshow(imread('Python/q2.jpg')); axis image;
+       axes(handles.axes37);
+       imshow(imread('Python/q3.jpg')); axis image;
+       
+       system('python Python/run_python_on_matlab_32.py');
+           
+    case 3
         load([data_dir '/hashCodes_64']); 
         data = hashCodes_64;
         load([feature_dir '/features_64']); 
@@ -2055,7 +1981,7 @@ switch hashCode_index
      
         
                 
-    case 2
+    case 4
        load([data_dir '/hashCodes_128']); 
        data = hashCodes_128;
        load([feature_dir '/features_128']); 
@@ -2072,7 +1998,7 @@ switch hashCode_index
   
       
        
-    case 3
+    case 5
         load([data_dir '/hashCodes_256']); 
         data = hashCodes_256;
         load([feature_dir '/features_256']); 
@@ -2089,7 +2015,7 @@ switch hashCode_index
       
         
         
-    case 4
+    case 6
         load([data_dir '/hashCodes_512']); 
         data = hashCodes_512;
         load([feature_dir '/features_512']); 
