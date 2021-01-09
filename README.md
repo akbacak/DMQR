@@ -3,7 +3,7 @@
 This repo contains the source codes of the [Deep multi query image retrieval](https://www.sciencedirect.com/science/article/pii/S0923596520301430) publication. 
 
 
-The repo contains codes related to simulations and some GUIs written in Matlab. The GUIs use multiple images as queries. Images of [LAMDA](http://www.lamda.nju.edu.cn/data_MIMLimage.ashx?AspxAutoDetectCookieSupport=1) and [Streets](https://drive.google.com/drive/folders/1xriB2PCJUmoVsJSDR8nImK1RtzDs0e45?usp=sharing) datasets were used.
+The repo contains codes related to simulations and some GUIs written in Matlab. The GUIs use multiple images as queries. [LAMDA](http://www.lamda.nju.edu.cn/data_MIMLimage.ashx?AspxAutoDetectCookieSupport=1) and [Streets](https://drive.google.com/drive/folders/1xriB2PCJUmoVsJSDR8nImK1RtzDs0e45?usp=sharing) datasets were used in the simulations. You can confirm simulations in the following steps.
 
 # 1
 Generate hash codes of images by https://github.com/akbacak/DMLH2  repo.
@@ -27,8 +27,5 @@ The GUI dmqRetrieval_3d do the same as in step 3 for 3 queries respectively from
 You don't want to choose query images LAMDA but from anywhere like google?. Download any jpg formatted image and locate them in the ./Python folder. For two queries use dmqRetrieval_final_v2. But You should select image labels manually from GUI. If you want query labels to be predicted by GUI the use dmqRetrieval_final_v3. dmqRetrieval_final_v3_3d use any three jpg formatted
 images as queries.
 
-Feel free for any question.
-
-More details about this study will be given upon request.
-
+If you have any question or help do not hesitate e-mail me at enver.akbacak AT gmail DOT com
 
