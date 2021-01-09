@@ -1,5 +1,9 @@
-# DMQIR 
-This repo contains some GUIs written in Matlab. The GUIs use multiple images as queries. Images of [LAMDA](http://www.lamda.nju.edu.cn/data_MIMLimage.ashx?AspxAutoDetectCookieSupport=1) and [Streets](https://drive.google.com/drive/folders/1xriB2PCJUmoVsJSDR8nImK1RtzDs0e45?usp=sharing) datasets were used.
+# Deep multi query image retrieval
+
+This repo contains the source codes of the [Deep multi query image retrieval](https://www.sciencedirect.com/science/article/pii/S0923596520301430) publication.
+
+
+The repo contains simulations and some GUIs written in Matlab. The GUIs use multiple images as queries. Images of [LAMDA](http://www.lamda.nju.edu.cn/data_MIMLimage.ashx?AspxAutoDetectCookieSupport=1) and [Streets](https://drive.google.com/drive/folders/1xriB2PCJUmoVsJSDR8nImK1RtzDs0e45?usp=sharing) datasets were used.
 
 # 1
 Generate hash codes of images by https://github.com/akbacak/DMLH2  repo.
